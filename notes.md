@@ -321,3 +321,142 @@ import Greeting from "./components/FunctionalGreeting";
 ✅ Must be exported and imported to be used in other files.
 ✅ Arrow functions offer a cleaner syntax but are optional.
 ✅ This is a stateless functional component—it does not change dynamically.
+
+# Using Props in Functional Components - Notes & Instructions
+
+## 1️⃣ Recap of the Previous Lesson
+- Created a basic functional component (FunctionalGreeting.js).
+- Learned how to export, import, and render components.
+- Components currently display static content.
+
+## 2️⃣ Why Use Props?
+- Props (short for properties) allow components to become dynamic.
+- They work like attributes in HTML but are fully customizable.
+- Instead of rendering the same greeting every time, we can pass different values to the component.
+- **Props are Parameters you pass into your React component in order to tell it what to render, and how.** 
+
+## 3️⃣ Setting Up a Component with Props
+
+**Step 1: Create a New Component**
+📌 Duplicate the existing component and rename it:
+
+1. Copy FunctionalGreeting.js
+2. Rename it to FunctionalGreetingWithProps.js.
+3. Change the function and export statement inside it:
+4. 
+```js
+import React from "react";
+
+function FunctionalGreetingWithProps() {
+  return <h1>Hello!</h1>;
+}
+
+export default FunctionalGreetingWithProps;
+```
+
+**Step 2: Import & Use the Component in App.js**
+
+1. Open App.js and import the new component:
+```js
+
+import FunctionalGreetingWithProps from "./components/FunctionalGreetingWithProps";
+```
+
+2. Render the new component below the original one:
+```js
+
+<FunctionalGreetingWithProps />
+```
+
+3. Save the file → Check if both components render in the browser.
+4. 
+✅ At this stage, the new component is still static.
+
+## 4️⃣ Adding & Using Props in a Component
+**Step 1: Pass Props to the Component in App.js**
+- Modify the component tag to pass a prop:
+
+```js
+
+<FunctionalGreetingWithProps greeting="Nice to meet you!" />
+```
+✅ Now the component receives a greeting prop, but it won’t display it yet.
+
+**Step 2: Retrieve & Use Props in the Component**
+1. Open FunctionalGreetingWithProps.js.
+2. Modify the function to accept props as a parameter:
+```js
+
+function FunctionalGreetingWithProps(props) {
+  return <h1>{props.greeting}</h1>;
+}
+```
+3. Save the file → The browser should now display:
+```css
+Nice to meet you!
+```
+✅ The component now dynamically displays different text based on props.
+
+## 5️⃣ Adding Multiple Props
+1. Modify App.js to pass more props:
+```js
+<FunctionalGreetingWithProps greeting="Nice to meet you!" name="Alex" age={25} />
+```
+2. Modify FunctionalGreetingWithProps.js to display all props:
+```js
+
+function FunctionalGreetingWithProps(props) {
+  return (
+    <div>
+      <h1>{props.greeting}</h1>
+      <p>Name: {props.name}</p>
+      <p>Age: {props.age}</p>
+    </div>
+  );
+}
+```
+3. Save the file → Now the browser should display:
+```vbnet
+
+Nice to meet you!
+Name: Alex
+Age: 25
+```
+✅ You can now pass and display multiple props dynamically.
+
+## 6️⃣ Understanding How Props Work
+- Props are passed like HTML attributes:
+```js
+<ComponentName propName="value" />
+```
+
+- Props are received as an object (props) inside the component.
+- Use curly braces ({}) to display props in JSX:
+```js
+<h1>{props.greeting}</h1>
+```
+✅ Props allow the same component to display different content depending on the values passed in.
+
+## 7️⃣ Challenge: Convert to an Arrow Function
+- Try refactoring FunctionalGreetingWithProps.js to use an arrow function:
+```js
+
+const FunctionalGreetingWithProps = (props) => (
+  <div>
+    <h1>{props.greeting}</h1>
+    <p>Name: {props.name}</p>
+    <p>Age: {props.age}</p>
+  </div>
+);
+
+export default FunctionalGreetingWithProps;
+```
+✅ This achieves the same result but with cleaner syntax.
+
+## 8️⃣ Key Takeaways
+✅ Props make functional components dynamic.
+✅ Props are passed like HTML attributes and accessed via props in the component.
+✅ Use curly braces ({}) to display prop values inside JSX.
+✅ Multiple props can be passed and used together.
+✅ Arrow functions offer a shorter syntax but are optional.
+
